@@ -1,0 +1,64 @@
+{
+  "name": "myerscode/laravel-domain-validator",
+  "description": "Validate Domains names in Laravel using PHP Domain Parser.",
+  "homepage": "https://github.commyerscode/laravel-domain-validator",
+  "support": {
+    "issues": "https://github.commyerscode/laravel-domain-validator/issues",
+    "source": "https://github.commyerscode/laravel-domain-validator"
+  },
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "icann",
+    "iana",
+    "domain parser"
+  ],
+  "authors": [
+    {
+      "name": "Fred Myerscough",
+      "email": "oniice@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "guzzlehttp/guzzle": "^7.2",
+    "illuminate/config": "^11.0",
+    "illuminate/support": "^11.0",
+    "jeremykendall/php-domain-parser": "^6.2"
+  },
+  "require-dev": {
+    "orchestra/testbench": "v9.0.3",
+    "phpunit/phpunit": "^11.0"
+  },
+  "autoload": {
+    "files": [
+      "src/Helpers.php"
+    ],
+    "psr-4": {
+      "Myerscode\\Laravel\\DomainValidator\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "scripts": {
+    "tests": "vendor/bin/phpunit --testdox --no-coverage --colors=always",
+    "test-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --testdox --colors=always",
+    "phpcs": "vendor/bin/phpcs src tests --standard=PSR12"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Myerscode\\Laravel\\DomainValidator\\ServiceProvider"
+      ]
+    }
+  }
+}
