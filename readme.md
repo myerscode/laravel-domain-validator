@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.pugx.org/myerscode/laravel-domain-validator/downloads)](https://packagist.org/packages/myerscode/laravel-domain-validator)
 [![License](https://poser.pugx.org/myerscode/laravel-domain-validator/license)](https://packagist.org/packages/myerscode/laravel-domain-validator)
 ![Tests](https://github.com/myerscode/laravel-domain-validator/workflows/tests/badge.svg?branch=main)
-
+[![codecov](https://codecov.io/gh/myerscode/laravel-domain-validator/graph/badge.svg?token=YR0YHVERNV)](https://codecov.io/gh/myerscode/laravel-domain-validator)
 ## Why is this useful?
 
 It allows easy integration of the [PHP Domain Parser](https://github.com/jeremykendall/php-domain-parser) PHP Domain Parser 
