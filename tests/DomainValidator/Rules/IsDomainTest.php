@@ -11,7 +11,7 @@ class IsDomainTest extends RulesTestCase
         return [
             'is_domain_name success' => [
                 'attribute' => 'domain_name',
-                'inputs' => ['myerscode.com', 'www.myerscode.com', 'https://myerscode.com', 'myerscode.com/', 'myerscode.com////'],
+                'inputs' => ['myerscode.com', 'www.myerscode.com', 'http://myerscode.com', 'https://myerscode.com', 'myerscode.com/', 'myerscode.com////'],
                 'constraints' => [new IsDomain()],
                 'valid' => true,
             ],

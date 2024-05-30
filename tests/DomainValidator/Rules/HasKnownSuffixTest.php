@@ -11,13 +11,13 @@ class HasKnownSuffixTest extends RulesTestCase
         return [
             'has_known_suffix success' => [
                 'attribute' => 'known_suffix',
-                'inputs' => ['myerscode.com', 'myerscode.co.uk', 'myerscode.co'],
+                'inputs' => ['myerscode.com', 'myerscode.co.uk', 'www.myerscode.dev', 'http://myerscode.dev', 'https://myerscode.dev'],
                 'constraints' => [new HasKnownSuffix()],
                 'valid' => true,
             ],
             'has_known_suffix fail' => [
                 'attribute' => 'known_suffix',
-                'inputs' => ['myerscode.corgi', 'myerscode.', 'myerscode.co.rgi'],
+                'inputs' => ['myerscode.corgi', 'http://myerscode.corgi', 'https://myerscode.corgi', 'myerscode.', 'myerscode.co.rgi'],
                 'constraints' => [new HasKnownSuffix()],
                 'valid' => false,
                 'message' => 'domain-validator::validation.has_known_suffix',

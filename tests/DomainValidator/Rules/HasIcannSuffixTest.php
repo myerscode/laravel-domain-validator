@@ -11,7 +11,7 @@ class HasIcannSuffixTest extends RulesTestCase
         return [
             'is_icann success' => [
                 'attribute' => 'icann',
-                'inputs' => ['myerscode.com', 'myerscode.co.uk'],
+                'inputs' => ['myerscode.com', 'myerscode.co.uk', 'www.myerscode.dev', 'http://myerscode.dev', 'https://myerscode.dev'],
                 'constraints' => [new HasIcannSuffix()],
                 'valid' => true,
             ],

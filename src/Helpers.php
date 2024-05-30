@@ -63,10 +63,10 @@ function isTLD(string $input): bool
 /**
  * Does the domain have an ICANN suffix.
  */
-function hasICANNSuffix(string $domain): bool
+function hasICANNSuffix(string $input): bool
 {
     try {
-        return Rules::resolve($domain)->suffix()->isICANN();
+        return Rules::resolve( sanitizeDomainString($input) )->suffix()->isICANN();
     } catch (Throwable) {
         return false;
     }
@@ -75,19 +75,19 @@ function hasICANNSuffix(string $domain): bool
 /**
  * Determine if the domain have a private suffix.
  */
-function hasPrivateSuffix(string $domain): bool
+function hasPrivateSuffix(string $input): bool
 {
     try {
-        return Rules::resolve($domain)->suffix()->isPrivate();
+        return Rules::resolve( sanitizeDomainString($input) )->suffix()->isPrivate();
     } catch (Throwable) {
         return false;
     }
 }
 
-function hasKnownSuffix(string $domain): bool
+function hasKnownSuffix(string $input): bool
 {
     try {
-        return Rules::resolve($domain)->suffix()->isKnown();
+        return Rules::resolve( sanitizeDomainString($input) )->suffix()->isKnown();
     } catch (Throwable) {
         return false;
     }
