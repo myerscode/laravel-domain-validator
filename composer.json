@@ -51,7 +51,7 @@
     "sort-packages": true
   },
   "scripts": {
-    "tests": "vendor/bin/phpunit --testdox --no-coverage --colors=always",
+    "test": "vendor/bin/phpunit --testdox --no-coverage --colors=always",
     "test-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --testdox --colors=always",
     "phpcs": "vendor/bin/phpcs src tests --standard=PSR12"
   },
