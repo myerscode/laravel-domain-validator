@@ -30,10 +30,16 @@ jobs:
         coverage: xdebug
         extensions: intl, fileinfo
 
-    - name: Install dependencies (Laravel ${{ matrix.laravel-versions }})
-      run: |
-        composer require "illuminate/support:^${{ matrix.laravel-versions }}.0" "illuminate/config:^${{ matrix.laravel-versions }}.0" --no-update
-        composer update --prefer-dist --no-progress --no-interaction
+    - name: Install dependencies (Laravel 11)
+      if: matrix.laravel-versions == 11
+      run: composer require "orchestra/testbench:^9.0" --no-update --dev
+
+    - name: Install dependencies (Laravel 12)
+      if: matrix.laravel-versions == 12
+      run: composer require "orchestra/testbench:^10.0" --no-update --dev
+
+    - name: Update dependencies
+      run: composer update --prefer-dist --no-progress --no-interaction
 
     - name: Run Test Suite
       run: composer run test
