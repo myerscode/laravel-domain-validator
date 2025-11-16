@@ -2,6 +2,7 @@
 
 namespace Tests\DomainValidator;
 
+use Exception;
 use Myerscode\Laravel\DomainValidator\Facades\Rules;
 use Myerscode\Laravel\DomainValidator\Facades\Suffix;
 use Myerscode\Laravel\DomainValidator\Facades\TopLevelDomain;
@@ -18,9 +19,9 @@ class HelpersTest extends TestCase
     protected function makeFacadesFails(): void
     {
         $throwException = new class {
-            public function __call($method, $parameters)
+            public function __call(string $method, array $parameters)
             {
-                throw new \Exception();
+                throw new Exception();
             }
         };
 
@@ -29,7 +30,7 @@ class HelpersTest extends TestCase
         TopLevelDomain::swap($throwException);
     }
 
-    public function testRuleReturnsFalseIfException()
+    public function testRuleReturnsFalseIfException(): void
     {
         $this->makeFacadesFails();
 

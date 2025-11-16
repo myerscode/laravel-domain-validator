@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use Override;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Support\Facades\Validator;
@@ -11,7 +13,8 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase
 {
-    public function setUp(): void
+    #[Override]
+    protected function setUp(): void
     {
         parent::setUp();
         Artisan::call('cache:clear');
@@ -21,7 +24,7 @@ class TestCase extends OrchestraTestCase
     protected function defineEnvironment($app): void
     {
         // Setup default database to use sqlite :memory:
-        tap($app['config'], function (Repository $config) {
+        tap($app['config'], function (Repository $config): void {
             $config->set('domain-validator.storage_driver', 'local');
             $config->set('domain-validator.cache_driver', 'array');
             $config->set('filesystems.disks.local.root', __DIR__ . '/storage');
@@ -31,7 +34,7 @@ class TestCase extends OrchestraTestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param Application $app
      *
      * @return array<int, class-string>
      */
@@ -45,7 +48,7 @@ class TestCase extends OrchestraTestCase
     /**
      * Get package aliases.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param Application $app
      *
      * @return array<string, class-string>
      */

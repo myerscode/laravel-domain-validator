@@ -11,10 +11,6 @@ abstract class RulesTestCase extends TestCase
     abstract public static function ruleTestProvider();
 
     /**
-     * @param  string  $attribute
-     * @param  string|array  $inputs
-     * @param  array  $constraints
-     * @param  bool  $valid
      * @param  ?string  $message  null
      */
     #[DataProvider('ruleTestProvider')]

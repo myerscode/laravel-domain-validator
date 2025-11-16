@@ -21,9 +21,7 @@ function sanitizeDomainString(string $domain): string
 /**
  * Is a given string a valid domain
  *
- * @param  string  $domain
  *
- * @return bool
  */
 function isDomain(string $domain): bool
 {
@@ -39,9 +37,7 @@ function isDomain(string $domain): bool
 /**
  * Is the given value a valid known TLD
  *
- * @param  string  $input
  *
- * @return bool
  */
 function isTLD(string $input): bool
 {

@@ -2,6 +2,7 @@
 
 namespace Myerscode\Laravel\DomainValidator;
 
+use Override;
 use Closure;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -18,41 +19,30 @@ class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
+    #[Override]
     public function register(): void
     {
         $this->registerConfig();
 
         $this->registerLanguage();
 
-        $this->app->singleton('ldv.factory', function () {
-            return new RulesFactory;
-        });
+        $this->app->singleton('ldv.factory', fn(): RulesFactory => new RulesFactory);
 
-        $this->app->singleton('ldv.rules', function ($app) {
-            return $app->make('ldv.factory')->createPublicSuffixRules();
-        });
+        $this->app->singleton('ldv.rules', fn($app) => $app->make('ldv.factory')->createPublicSuffixRules());
 
-        $this->app->singleton('ldv.tld', function ($app) {
-            return $app->make('ldv.factory')->createTopLevelDomains();
-        });
+        $this->app->singleton('ldv.tld', fn($app) => $app->make('ldv.factory')->createTopLevelDomains());
 
-        $this->app->singleton('ldv.suffix', function ($app) {
-            return new class {
-                public function __call($method, $parameters)
-                {
-                    return Suffix::$method(...$parameters);
-                }
-            };
+        $this->app->singleton('ldv.suffix', fn($app): object => new class {
+            public function __call(string $method, array $parameters)
+            {
+                return Suffix::$method(...$parameters);
+            }
         });
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot(): void
     {

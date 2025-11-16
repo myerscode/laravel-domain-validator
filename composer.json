@@ -22,7 +22,7 @@
   ],
   "require": {
     "ext-intl": "*",
-    "php": "^8.2",
+    "php": "^8.4",
     "guzzlehttp/guzzle": "^7.2",
     "illuminate/config": "^11.0",
     "illuminate/support": "^11.0",
