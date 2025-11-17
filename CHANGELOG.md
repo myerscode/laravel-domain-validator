@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [2025.0.0] - November 17, 2025
+### Changed
+- updates for php 84 compatibilities ([fb716aa2](#/fb716aa29e96c9534527bc93a4186d97270b499a))
+### Fixed
+- **github**: get the test matrix working ([0362a43d](#/0362a43d6cc604007ba9f95a6d0e499269f3d447))
+
 ## [11.1.1](https://github.com/myerscode/laravel-domain-validator/releases/tag/11.1.1) - 2024-05-30
 
 - [`92855df`](https://github.com/myerscode/laravel-domain-validator/commit/92855df89918dd64b6e419b4fd09fffbf97ddc7f) chore(github): added osx to test run matrix
