@@ -5,11 +5,9 @@ namespace Myerscode\Laravel\DomainValidator;
 use Override;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Illuminate\Validation\InvokableValidationRule;
 use Myerscode\Laravel\DomainValidator\Commands\CacheCommand;
 use Myerscode\Laravel\DomainValidator\Commands\FetchCommand;
 use Myerscode\Laravel\DomainValidator\Commands\RefreshCommand;
-use Myerscode\Laravel\DomainValidator\Rules\IsDomain;
 use Pdp\Suffix;
 
 class ServiceProvider extends BaseServiceProvider
@@ -43,7 +41,8 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->singleton('ldv.tld', fn ($app) => $app->make('ldv.factory')->createTopLevelDomains());
 
         $this->app->singleton('ldv.suffix', fn ($app): object => new class () {
-            public function __call(string $method, array $parameters)
+            /** @param  array<int, mixed>  $parameters */
+            public function __call(string $method, array $parameters): mixed
             {
                 return Suffix::$method(...$parameters);
             }
@@ -88,7 +87,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         Validator::extend(
             'is_domain',
-            InvokableValidationRule::make(new IsDomain()),
+            fn (string $attribute, mixed $value): bool => isDomain((string) $value),
             'The :attribute field is not a valid domain name.',
         );
     }

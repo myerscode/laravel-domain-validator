@@ -36,7 +36,15 @@ class FetchCommand extends Command
 
     protected function fetchAndStoreData(string $url, string $storedName): void
     {
-        Storage::disk(config('domain-validator.storage_driver'))->put($storedName, file_get_contents($url));
+        $contents = file_get_contents($url);
+
+        if ($contents === false) {
+            $this->error("Failed to fetch data from {$url}");
+
+            return;
+        }
+
+        Storage::disk(config('domain-validator.storage_driver'))->put($storedName, $contents);
     }
 
     protected function fetchSuffixList(): void

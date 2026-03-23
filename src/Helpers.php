@@ -5,7 +5,6 @@ namespace Myerscode\Laravel\DomainValidator;
 use Myerscode\Laravel\DomainValidator\Facades\Rules;
 use Myerscode\Laravel\DomainValidator\Facades\Suffix;
 use Myerscode\Laravel\DomainValidator\Facades\TopLevelDomain;
-use Pdp\Domain;
 use Throwable;
 
 /**
@@ -15,7 +14,7 @@ function sanitizeDomainString(string $domain): string
 {
     $pattern = '/^\s*(https?:\/\/)?(.*?)(\/+)?\s*$/i';
 
-    return preg_replace($pattern, '$2', $domain);
+    return (string) preg_replace($pattern, '$2', $domain);
 }
 
 /**
