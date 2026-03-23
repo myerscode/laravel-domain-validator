@@ -3,15 +3,12 @@
 namespace Myerscode\Laravel\DomainValidator;
 
 use Override;
-use Closure;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Illuminate\Translation\Translator;
 use Illuminate\Validation\InvokableValidationRule;
 use Myerscode\Laravel\DomainValidator\Commands\CacheCommand;
 use Myerscode\Laravel\DomainValidator\Commands\FetchCommand;
 use Myerscode\Laravel\DomainValidator\Commands\RefreshCommand;
-use Myerscode\Laravel\DomainValidator\Commands\TestDomainCommand;
 use Myerscode\Laravel\DomainValidator\Rules\IsDomain;
 use Pdp\Suffix;
 
