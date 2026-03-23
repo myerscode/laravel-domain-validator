@@ -18,9 +18,19 @@ use function Myerscode\Laravel\DomainValidator\isTLD;
 
 final class HelpersTest extends TestCase
 {
+    public function testRuleReturnsFalseIfException(): void
+    {
+        $this->makeFacadesFails();
+
+        $this->assertFalse(hasICANNSuffix(''));
+        $this->assertFalse(hasKnownSuffix(''));
+        $this->assertFalse(hasPrivateSuffix(''));
+        $this->assertFalse(isDomain(''));
+        $this->assertFalse(isTLD(''));
+    }
     protected function makeFacadesFails(): void
     {
-        $throwException = new class {
+        $throwException = new class () {
             public function __call(string $method, array $parameters)
             {
                 throw new Exception();
@@ -30,16 +40,5 @@ final class HelpersTest extends TestCase
         Rules::swap($throwException);
         Suffix::swap($throwException);
         TopLevelDomain::swap($throwException);
-    }
-
-    public function testRuleReturnsFalseIfException(): void
-    {
-        $this->makeFacadesFails();
-
-       $this->assertFalse( hasICANNSuffix(''));
-       $this->assertFalse( hasKnownSuffix(''));
-       $this->assertFalse( hasPrivateSuffix(''));
-       $this->assertFalse( isDomain(''));
-       $this->assertFalse( isTLD(''));
     }
 }

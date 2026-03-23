@@ -8,20 +8,19 @@ use Override;
 class RefreshCommand extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    #[Override]
-    protected $signature = 'domain-validator:refresh';
-
-    /**
      * The console command description.
      *
      * @var string
      */
     #[Override]
     protected $description = 'Fetch and cache data domain validation.';
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    #[Override]
+    protected $signature = 'domain-validator:refresh';
 
     /**
      * Execute the console command.

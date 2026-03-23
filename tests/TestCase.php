@@ -21,6 +21,11 @@ class TestCase extends OrchestraTestCase
         Artisan::call('domain-validator:cache');
     }
 
+    public function getValidationMessage($message, $attribute): string
+    {
+        return Validator::make([], [])->makeReplacements(__($message), $attribute, '', []);
+    }
+
     protected function defineEnvironment($app): void
     {
         // Setup default database to use sqlite :memory:
@@ -29,20 +34,6 @@ class TestCase extends OrchestraTestCase
             $repository->set('domain-validator.cache_driver', 'array');
             $repository->set('filesystems.disks.local.root', __DIR__ . '/storage');
         });
-    }
-
-    /**
-     * Get package providers.
-     *
-     * @param Application $app
-     *
-     * @return array<int, class-string>
-     */
-    protected function getPackageProviders($app): array
-    {
-        return [
-            ServiceProvider::class,
-        ];
     }
 
     /**
@@ -59,8 +50,17 @@ class TestCase extends OrchestraTestCase
         ];
     }
 
-    public function getValidationMessage($message, $attribute): string
+    /**
+     * Get package providers.
+     *
+     * @param Application $app
+     *
+     * @return array<int, class-string>
+     */
+    protected function getPackageProviders($app): array
     {
-        return Validator::make([], [])->makeReplacements(__($message), $attribute, '', []);
+        return [
+            ServiceProvider::class,
+        ];
     }
 }

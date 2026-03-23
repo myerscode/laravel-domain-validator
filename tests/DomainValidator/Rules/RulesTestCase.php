@@ -22,7 +22,7 @@ abstract class RulesTestCase extends TestCase
         string|array $inputs,
         array $constraints,
         bool $valid,
-        ?string $message = null
+        ?string $message = null,
     ): void {
 
         if (is_string($inputs)) {

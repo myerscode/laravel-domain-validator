@@ -9,20 +9,19 @@ use Override;
 class FetchCommand extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    #[Override]
-    protected $signature = 'domain-validator:fetch';
-
-    /**
      * The console command description.
      *
      * @var string
      */
     #[Override]
     protected $description = 'Fetch data sets for domain validation.';
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    #[Override]
+    protected $signature = 'domain-validator:fetch';
 
     /**
      * Execute the console command.

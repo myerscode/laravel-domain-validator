@@ -10,20 +10,19 @@ use Override;
 class CacheCommand extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    #[Override]
-    protected $signature = 'domain-validator:cache';
-
-    /**
      * The console command description.
      *
      * @var string
      */
     #[Override]
     protected $description = 'Cache the raw data sets.';
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    #[Override]
+    protected $signature = 'domain-validator:cache';
 
     public function handle(): void
     {

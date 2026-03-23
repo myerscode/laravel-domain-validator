@@ -15,30 +15,6 @@ use Pdp\Suffix;
 class ServiceProvider extends BaseServiceProvider
 {
     /**
-     * Register any application services.
-     */
-    #[Override]
-    public function register(): void
-    {
-        $this->registerConfig();
-
-        $this->registerLanguage();
-
-        $this->app->singleton('ldv.factory', fn(): RulesFactory => new RulesFactory);
-
-        $this->app->singleton('ldv.rules', fn($app) => $app->make('ldv.factory')->createPublicSuffixRules());
-
-        $this->app->singleton('ldv.tld', fn($app) => $app->make('ldv.factory')->createTopLevelDomains());
-
-        $this->app->singleton('ldv.suffix', fn($app): object => new class {
-            public function __call(string $method, array $parameters)
-            {
-                return Suffix::$method(...$parameters);
-            }
-        });
-    }
-
-    /**
      * Bootstrap any application services.
      */
     public function boot(): void
@@ -49,6 +25,29 @@ class ServiceProvider extends BaseServiceProvider
         }
 
         $this->registerValidators();
+    }
+    /**
+     * Register any application services.
+     */
+    #[Override]
+    public function register(): void
+    {
+        $this->registerConfig();
+
+        $this->registerLanguage();
+
+        $this->app->singleton('ldv.factory', fn (): RulesFactory => new RulesFactory());
+
+        $this->app->singleton('ldv.rules', fn ($app) => $app->make('ldv.factory')->createPublicSuffixRules());
+
+        $this->app->singleton('ldv.tld', fn ($app) => $app->make('ldv.factory')->createTopLevelDomains());
+
+        $this->app->singleton('ldv.suffix', fn ($app): object => new class () {
+            public function __call(string $method, array $parameters)
+            {
+                return Suffix::$method(...$parameters);
+            }
+        });
     }
 
     protected function registerCommands(): void
@@ -64,19 +63,8 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->mergeConfigFrom(
             __DIR__ . '/config/domain-validator.php',
-            'domain-validator'
+            'domain-validator',
         );
-    }
-
-    protected function registerPublishing(): void
-    {
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/config/domain-validator.php' => config_path('domain-validator.php'),
-            ],
-                'config'
-            );
-        }
     }
 
     protected function registerLanguage(): void
@@ -84,12 +72,24 @@ class ServiceProvider extends BaseServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/lang', 'domain-validator');
     }
 
+    protected function registerPublishing(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->publishes(
+                [
+                __DIR__ . '/config/domain-validator.php' => config_path('domain-validator.php'),
+            ],
+                'config',
+            );
+        }
+    }
+
     protected function registerValidators(): void
     {
         Validator::extend(
             'is_domain',
-            InvokableValidationRule::make(new IsDomain),
-            'The :attribute field is not a valid domain name.'
+            InvokableValidationRule::make(new IsDomain()),
+            'The :attribute field is not a valid domain name.',
         );
     }
 

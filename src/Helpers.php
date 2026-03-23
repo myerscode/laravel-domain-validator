@@ -62,7 +62,7 @@ function isTLD(string $input): bool
 function hasICANNSuffix(string $input): bool
 {
     try {
-        return Rules::resolve( sanitizeDomainString($input) )->suffix()->isICANN();
+        return Rules::resolve(sanitizeDomainString($input))->suffix()->isICANN();
     } catch (Throwable) {
         return false;
     }
@@ -74,7 +74,7 @@ function hasICANNSuffix(string $input): bool
 function hasPrivateSuffix(string $input): bool
 {
     try {
-        return Rules::resolve( sanitizeDomainString($input) )->suffix()->isPrivate();
+        return Rules::resolve(sanitizeDomainString($input))->suffix()->isPrivate();
     } catch (Throwable) {
         return false;
     }
@@ -83,9 +83,8 @@ function hasPrivateSuffix(string $input): bool
 function hasKnownSuffix(string $input): bool
 {
     try {
-        return Rules::resolve( sanitizeDomainString($input) )->suffix()->isKnown();
+        return Rules::resolve(sanitizeDomainString($input))->suffix()->isKnown();
     } catch (Throwable) {
         return false;
     }
 }
-
