@@ -4,6 +4,7 @@ namespace Myerscode\Laravel\DomainValidator\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Override;
 
 class FetchCommand extends Command
 {
@@ -12,6 +13,7 @@ class FetchCommand extends Command
      *
      * @var string
      */
+    #[Override]
     protected $signature = 'domain-validator:fetch';
 
     /**
@@ -19,6 +21,7 @@ class FetchCommand extends Command
      *
      * @var string
      */
+    #[Override]
     protected $description = 'Fetch data sets for domain validation.';
 
     /**

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Commands;
 
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-class FetchCommandTest extends TestCase
+final class FetchCommandTest extends TestCase
 {
     public function testCommand(): void
     {

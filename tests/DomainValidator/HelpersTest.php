@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\DomainValidator;
 
 use Exception;
@@ -14,7 +16,7 @@ use function Myerscode\Laravel\DomainValidator\hasPrivateSuffix;
 use function Myerscode\Laravel\DomainValidator\isDomain;
 use function Myerscode\Laravel\DomainValidator\isTLD;
 
-class HelpersTest extends TestCase
+final class HelpersTest extends TestCase
 {
     protected function makeFacadesFails(): void
     {

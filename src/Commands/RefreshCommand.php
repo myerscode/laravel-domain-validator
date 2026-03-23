@@ -3,7 +3,7 @@
 namespace Myerscode\Laravel\DomainValidator\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
+use Override;
 
 class RefreshCommand extends Command
 {
@@ -12,6 +12,7 @@ class RefreshCommand extends Command
      *
      * @var string
      */
+    #[Override]
     protected $signature = 'domain-validator:refresh';
 
     /**
@@ -19,6 +20,7 @@ class RefreshCommand extends Command
      *
      * @var string
      */
+    #[Override]
     protected $description = 'Fetch and cache data domain validation.';
 
     /**

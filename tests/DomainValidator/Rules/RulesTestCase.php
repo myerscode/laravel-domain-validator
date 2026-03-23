@@ -1,14 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\DomainValidator\Rules;
 
 use Illuminate\Support\Facades\Validator;
+use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 abstract class RulesTestCase extends TestCase
 {
-    abstract public static function ruleTestProvider();
+    abstract public static function ruleTestProvider(): Iterator;
 
     /**
      * @param  ?string  $message  null
@@ -29,10 +32,10 @@ abstract class RulesTestCase extends TestCase
         foreach ($inputs as $input) {
             $validator = Validator::make([$attribute => $input], [$attribute => $constraints]);
 
-            self::assertSame($valid, $validator->passes(), $input);
+            $this->assertSame($valid, $validator->passes(), $input);
 
             if (!$valid) {
-                self::assertSame($this->getValidationMessage($message, $attribute), $validator->messages()->first());
+                $this->assertSame($this->getValidationMessage($message, $attribute), $validator->messages()->first());
             }
         }
     }

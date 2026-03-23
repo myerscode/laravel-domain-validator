@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Commands;
 
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-class RefreshCommandTest extends TestCase
+final class RefreshCommandTest extends TestCase
 {
     public function testCommand(): void
     {

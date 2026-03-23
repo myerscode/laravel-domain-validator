@@ -3,10 +3,9 @@
 namespace Myerscode\Laravel\DomainValidator\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-
+use Override;
 
 class CacheCommand extends Command
 {
@@ -15,6 +14,7 @@ class CacheCommand extends Command
      *
      * @var string
      */
+    #[Override]
     protected $signature = 'domain-validator:cache';
 
     /**
@@ -22,6 +22,7 @@ class CacheCommand extends Command
      *
      * @var string
      */
+    #[Override]
     protected $description = 'Cache the raw data sets.';
 
     public function handle(): void

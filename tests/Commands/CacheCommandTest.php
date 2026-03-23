@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Commands;
 
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 
-class CacheCommandTest extends TestCase
+final class CacheCommandTest extends TestCase
 {
     public function testCommand(): void
     {
