@@ -36,7 +36,7 @@ class FetchCommand extends Command
 
     protected function fetchAndStoreData(string $url, string $storedName): void
     {
-        $contents = file_get_contents($url);
+        $contents = @file_get_contents($url);
 
         if ($contents === false) {
             $this->error("Failed to fetch data from {$url}");

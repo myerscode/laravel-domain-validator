@@ -24,4 +24,18 @@ final class FetchCommandTest extends TestCase
         Storage::disk(config('domain-validator.storage_driver'))
             ->assertExists(config('domain-validator.iana_tld.storage_name'));
     }
+
+    public function testCommandOutputsErrorWhenFetchFails(): void
+    {
+        config()->set('domain-validator.public_suffix.list_url', __DIR__ . '/nonexistent-file.dat');
+        config()->set('domain-validator.iana_tld.list_url', __DIR__ . '/nonexistent-file.txt');
+
+        Storage::fake(config('domain-validator.storage_driver'));
+
+        $this
+            ->artisan('domain-validator:fetch', [])
+            ->expectsOutput('Fetching latest data sets...')
+            ->expectsOutputToContain('Failed to fetch data from')
+            ->assertExitCode(0);
+    }
 }
