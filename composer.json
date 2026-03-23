@@ -22,14 +22,14 @@
   ],
   "require": {
     "ext-intl": "*",
-    "php": "^8.4",
+    "php": "^8.5",
     "guzzlehttp/guzzle": "^7.2",
-    "illuminate/config": "^11.0|^12.0",
-    "illuminate/support": "^11.0|^12.0",
+    "illuminate/config": "^13.0",
+    "illuminate/support": "^13.0",
     "jeremykendall/php-domain-parser": "^6.2"
   },
   "require-dev": {
-    "orchestra/testbench": "^9.0|^10.0",
+    "orchestra/testbench": "^11.0",
     "phpunit/phpunit": "^11.0"
   },
   "autoload": {
