@@ -1,27 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\DomainValidator\Rules;
 
 use Myerscode\Laravel\DomainValidator\Rules\HasIcannSuffix;
+use Iterator;
 
-class HasIcannSuffixTest extends RulesTestCase
+final class HasIcannSuffixTest extends RulesTestCase
 {
-    public static function ruleTestProvider(): array
+    public static function ruleTestProvider(): Iterator
     {
-        return [
-            'is_icann success' => [
-                'attribute' => 'icann',
-                'inputs' => ['myerscode.com', 'myerscode.co.uk', 'www.myerscode.dev', 'http://myerscode.dev', 'https://myerscode.dev'],
-                'constraints' => [new HasIcannSuffix()],
-                'valid' => true,
-            ],
-            'is_icann fail' => [
-                'attribute' => 'icann',
-                'inputs' => ['cloudfront.net'],
-                'constraints' => [new HasIcannSuffix()],
-                'valid' => false,
-                'message' => 'domain-validator::validation.is_icann',
-            ],
+        yield 'is_icann success' => [
+            'attribute' => 'icann',
+            'inputs' => ['myerscode.com', 'myerscode.co.uk', 'www.myerscode.dev', 'http://myerscode.dev', 'https://myerscode.dev'],
+            'constraints' => [new HasIcannSuffix()],
+            'valid' => true,
+        ];
+        yield 'is_icann fail' => [
+            'attribute' => 'icann',
+            'inputs' => ['cloudfront.net'],
+            'constraints' => [new HasIcannSuffix()],
+            'valid' => false,
+            'message' => 'domain-validator::validation.is_icann',
         ];
     }
 

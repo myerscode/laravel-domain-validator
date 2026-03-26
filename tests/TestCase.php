@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
-use Override;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Contracts\Config\Repository;
@@ -13,7 +14,6 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase
 {
-    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -21,28 +21,19 @@ class TestCase extends OrchestraTestCase
         Artisan::call('domain-validator:cache');
     }
 
+    public function getValidationMessage($message, $attribute): string
+    {
+        return Validator::make([], [])->makeReplacements(__($message), $attribute, '', []);
+    }
+
     protected function defineEnvironment($app): void
     {
         // Setup default database to use sqlite :memory:
-        tap($app['config'], function (Repository $config): void {
-            $config->set('domain-validator.storage_driver', 'local');
-            $config->set('domain-validator.cache_driver', 'array');
-            $config->set('filesystems.disks.local.root', __DIR__ . '/storage');
+        tap($app['config'], function (Repository $repository): void {
+            $repository->set('domain-validator.storage_driver', 'local');
+            $repository->set('domain-validator.cache_driver', 'array');
+            $repository->set('filesystems.disks.local.root', __DIR__ . '/storage');
         });
-    }
-
-    /**
-     * Get package providers.
-     *
-     * @param Application $app
-     *
-     * @return array<int, class-string>
-     */
-    protected function getPackageProviders($app): array
-    {
-        return [
-            ServiceProvider::class,
-        ];
     }
 
     /**
@@ -59,8 +50,17 @@ class TestCase extends OrchestraTestCase
         ];
     }
 
-    public function getValidationMessage($message, $attribute): string
+    /**
+     * Get package providers.
+     *
+     * @param Application $app
+     *
+     * @return array<int, class-string>
+     */
+    protected function getPackageProviders($app): array
     {
-        return Validator::make([], [])->makeReplacements(__($message), $attribute, '', []);
+        return [
+            ServiceProvider::class,
+        ];
     }
 }

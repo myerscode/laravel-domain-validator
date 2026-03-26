@@ -5,7 +5,6 @@ namespace Myerscode\Laravel\DomainValidator;
 use Myerscode\Laravel\DomainValidator\Facades\Rules;
 use Myerscode\Laravel\DomainValidator\Facades\Suffix;
 use Myerscode\Laravel\DomainValidator\Facades\TopLevelDomain;
-use Pdp\Domain;
 use Throwable;
 
 /**
@@ -15,7 +14,7 @@ function sanitizeDomainString(string $domain): string
 {
     $pattern = '/^\s*(https?:\/\/)?(.*?)(\/+)?\s*$/i';
 
-    return preg_replace($pattern, '$2', $domain);
+    return (string) preg_replace($pattern, '$2', $domain);
 }
 
 /**
@@ -62,7 +61,7 @@ function isTLD(string $input): bool
 function hasICANNSuffix(string $input): bool
 {
     try {
-        return Rules::resolve( sanitizeDomainString($input) )->suffix()->isICANN();
+        return Rules::resolve(sanitizeDomainString($input))->suffix()->isICANN();
     } catch (Throwable) {
         return false;
     }
@@ -74,7 +73,7 @@ function hasICANNSuffix(string $input): bool
 function hasPrivateSuffix(string $input): bool
 {
     try {
-        return Rules::resolve( sanitizeDomainString($input) )->suffix()->isPrivate();
+        return Rules::resolve(sanitizeDomainString($input))->suffix()->isPrivate();
     } catch (Throwable) {
         return false;
     }
@@ -83,9 +82,8 @@ function hasPrivateSuffix(string $input): bool
 function hasKnownSuffix(string $input): bool
 {
     try {
-        return Rules::resolve( sanitizeDomainString($input) )->suffix()->isKnown();
+        return Rules::resolve(sanitizeDomainString($input))->suffix()->isKnown();
     } catch (Throwable) {
         return false;
     }
 }
-

@@ -3,13 +3,21 @@
 
 [![Latest Stable Version](https://poser.pugx.org/myerscode/laravel-domain-validator/v/stable)](https://packagist.org/packages/myerscode/laravel-domain-validator)
 [![Total Downloads](https://poser.pugx.org/myerscode/laravel-domain-validator/downloads)](https://packagist.org/packages/myerscode/laravel-domain-validator)
+[![PHP Version Require](http://poser.pugx.org/myerscode/laravel-domain-validator/require/php)](https://packagist.org/packages/myerscode/laravel-domain-validator)
 [![License](https://poser.pugx.org/myerscode/laravel-domain-validator/license)](https://packagist.org/packages/myerscode/laravel-domain-validator)
-![Tests](https://github.com/myerscode/laravel-domain-validator/actions/workflows/tests.yml/badge.svg?branch=main)
-[![codecov](https://codecov.io/gh/myerscode/laravel-domain-validator/graph/badge.svg?token=YR0YHVERNV)](https://codecov.io/gh/myerscode/laravel-domain-validator)
+[![Tests](https://github.com/myerscode/laravel-domain-validator/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/myerscode/laravel-domain-validator/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/myerscode/laravel-domain-validator/graph/badge.svg)](https://codecov.io/gh/myerscode/laravel-domain-validator)
+
+## Requirements
+
+- PHP ^8.5
+- Laravel ^13.0
+
 ## Why is this useful?
 
-It allows easy integration of the [PHP Domain Parser](https://github.com/jeremykendall/php-domain-parser) PHP Domain Parser 
-by [Jeremy Kendall](https://github.com/jeremykendall) into a Laravel app, in order to validate values against known 
+It allows easy integration of the [PHP Domain Parser](https://github.com/jeremykendall/php-domain-parser) PHP Domain Parser
+by [Jeremy Kendall](https://github.com/jeremykendall) into a Laravel app, in order to validate values against known
+domain data.
 
 ## Installation
 
@@ -23,7 +31,7 @@ composer require myerscode/laravel-domain-validator
 
 Fetch data sets
 ```php
-artisan domain-validator:cache
+artisan domain-validator:fetch
 ```
 
 Cache the fetched data sets
@@ -41,8 +49,6 @@ artisan domain-validator:refresh
 It is recommended to schedule the refresh command, in order to remove the need of running the `domain-validator:refresh` command
 every time you need to update your cache.
 
-Keeping the sources of truth (the )
-
 ```php
 // routes/console.php
 
@@ -57,9 +63,6 @@ Schedule::call(new \Myerscode\Laravel\DomainValidator\Commands\RefreshCommand)->
 
 Note: For developer experience, all strings passed will be sanitized to remove trailing slashes `/` and `http(s)://`.
 
-Is the value recognized valid a valid TLD suffix recognized by the Internet Corporation for Assigned Names and
-Numbers (ICANN) as....
-
 ### Has ICANN Suffix
 > Tells whether the effective TLD has a matching rule in a Public Suffix List ICANN Section.
 
@@ -71,8 +74,6 @@ hasICANNSuffix('cloudfront.net') // false
 
 ### Has Known Suffix
 > Tells whether the effective TLD has a matching rule in a Public Suffix List.
-
-For more information i go to the [Public Suffix section](#public-suffix)
 
 ```php
 hasKnownSuffix('myerscode.co') // true

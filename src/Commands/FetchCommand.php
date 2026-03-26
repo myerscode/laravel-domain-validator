@@ -4,22 +4,25 @@ namespace Myerscode\Laravel\DomainValidator\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Override;
 
 class FetchCommand extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'domain-validator:fetch';
-
     /**
      * The console command description.
      *
      * @var string
      */
+    #[Override]
     protected $description = 'Fetch data sets for domain validation.';
+
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    #[Override]
+    protected $signature = 'domain-validator:fetch';
 
     /**
      * Execute the console command.
@@ -34,7 +37,15 @@ class FetchCommand extends Command
 
     protected function fetchAndStoreData(string $url, string $storedName): void
     {
-        Storage::disk(config('domain-validator.storage_driver'))->put($storedName, file_get_contents($url));
+        $contents = @file_get_contents($url);
+
+        if ($contents === false) {
+            $this->error('Failed to fetch data from ' . $url);
+
+            return;
+        }
+
+        Storage::disk(config('domain-validator.storage_driver'))->put($storedName, $contents);
     }
 
     protected function fetchSuffixList(): void

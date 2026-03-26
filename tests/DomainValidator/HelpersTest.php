@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\DomainValidator;
 
 use Exception;
@@ -14,11 +16,22 @@ use function Myerscode\Laravel\DomainValidator\hasPrivateSuffix;
 use function Myerscode\Laravel\DomainValidator\isDomain;
 use function Myerscode\Laravel\DomainValidator\isTLD;
 
-class HelpersTest extends TestCase
+final class HelpersTest extends TestCase
 {
+    public function testRuleReturnsFalseIfException(): void
+    {
+        $this->makeFacadesFails();
+
+        $this->assertFalse(hasICANNSuffix(''));
+        $this->assertFalse(hasKnownSuffix(''));
+        $this->assertFalse(hasPrivateSuffix(''));
+        $this->assertFalse(isDomain(''));
+        $this->assertFalse(isTLD(''));
+    }
+
     protected function makeFacadesFails(): void
     {
-        $throwException = new class {
+        $throwException = new class () {
             public function __call(string $method, array $parameters)
             {
                 throw new Exception();
@@ -28,16 +41,5 @@ class HelpersTest extends TestCase
         Rules::swap($throwException);
         Suffix::swap($throwException);
         TopLevelDomain::swap($throwException);
-    }
-
-    public function testRuleReturnsFalseIfException(): void
-    {
-        $this->makeFacadesFails();
-
-       $this->assertFalse( hasICANNSuffix(''));
-       $this->assertFalse( hasKnownSuffix(''));
-       $this->assertFalse( hasPrivateSuffix(''));
-       $this->assertFalse( isDomain(''));
-       $this->assertFalse( isTLD(''));
     }
 }

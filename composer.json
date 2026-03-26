@@ -1,10 +1,10 @@
 {
   "name": "myerscode/laravel-domain-validator",
   "description": "Validate Domains names in Laravel using PHP Domain Parser.",
-  "homepage": "https://github.commyerscode/laravel-domain-validator",
+  "homepage": "https://github.com/myerscode/laravel-domain-validator",
   "support": {
-    "issues": "https://github.commyerscode/laravel-domain-validator/issues",
-    "source": "https://github.commyerscode/laravel-domain-validator"
+    "issues": "https://github.com/myerscode/laravel-domain-validator/issues",
+    "source": "https://github.com/myerscode/laravel-domain-validator"
   },
   "type": "library",
   "license": "MIT",
@@ -22,15 +22,17 @@
   ],
   "require": {
     "ext-intl": "*",
-    "php": "^8.4",
+    "php": "^8.5",
     "guzzlehttp/guzzle": "^7.2",
-    "illuminate/config": "^11.0|^12.0",
-    "illuminate/support": "^11.0|^12.0",
+    "illuminate/config": "^13.0",
+    "illuminate/support": "^13.0",
     "jeremykendall/php-domain-parser": "^6.2"
   },
   "require-dev": {
-    "orchestra/testbench": "^9.0|^10.0",
-    "phpunit/phpunit": "^11.0"
+    "larastan/larastan": "^3.9",
+    "laravel/pint": "^1.29",
+    "orchestra/testbench": "^11.0",
+    "phpunit/phpunit": "^13.0"
   },
   "autoload": {
     "files": [
@@ -51,9 +53,11 @@
     "sort-packages": true
   },
   "scripts": {
-    "test": "vendor/bin/phpunit --testdox --no-coverage --colors=always",
-    "test-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --testdox --colors=always",
-    "phpcs": "vendor/bin/phpcs src tests --standard=PSR12"
+    "lint": "vendor/bin/pint",
+    "analyse": "vendor/bin/phpstan analyse",
+    "tests": "vendor/bin/phpunit --testdox --no-coverage --colors=always",
+    "test-coverage": "vendor/bin/phpunit --testdox --colors=always",
+    "security-audit": "@composer audit"
   },
   "extra": {
     "laravel": {
