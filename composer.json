@@ -1,10 +1,10 @@
 {
   "name": "myerscode/laravel-domain-validator",
   "description": "Validate Domains names in Laravel using PHP Domain Parser.",
-  "homepage": "https://github.commyerscode/laravel-domain-validator",
+  "homepage": "https://github.com/myerscode/laravel-domain-validator",
   "support": {
-    "issues": "https://github.commyerscode/laravel-domain-validator/issues",
-    "source": "https://github.commyerscode/laravel-domain-validator"
+    "issues": "https://github.com/myerscode/laravel-domain-validator/issues",
+    "source": "https://github.com/myerscode/laravel-domain-validator"
   },
   "type": "library",
   "license": "MIT",
