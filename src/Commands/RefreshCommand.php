@@ -14,6 +14,7 @@ class RefreshCommand extends Command
      */
     #[Override]
     protected $description = 'Fetch and cache data domain validation.';
+
     /**
      * The name and signature of the console command.
      *

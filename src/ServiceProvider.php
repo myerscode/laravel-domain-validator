@@ -24,6 +24,7 @@ class ServiceProvider extends BaseServiceProvider
 
         $this->registerValidators();
     }
+
     /**
      * Register any application services.
      */

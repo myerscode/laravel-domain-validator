@@ -28,6 +28,7 @@ final class HelpersTest extends TestCase
         $this->assertFalse(isDomain(''));
         $this->assertFalse(isTLD(''));
     }
+
     protected function makeFacadesFails(): void
     {
         $throwException = new class () {

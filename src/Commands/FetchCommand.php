@@ -15,6 +15,7 @@ class FetchCommand extends Command
      */
     #[Override]
     protected $description = 'Fetch data sets for domain validation.';
+
     /**
      * The name and signature of the console command.
      *
@@ -39,7 +40,7 @@ class FetchCommand extends Command
         $contents = @file_get_contents($url);
 
         if ($contents === false) {
-            $this->error("Failed to fetch data from {$url}");
+            $this->error('Failed to fetch data from ' . $url);
 
             return;
         }

@@ -16,6 +16,7 @@ class CacheCommand extends Command
      */
     #[Override]
     protected $description = 'Cache the raw data sets.';
+
     /**
      * The name and signature of the console command.
      *
