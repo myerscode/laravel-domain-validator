@@ -5,8 +5,8 @@
 [![Total Downloads](https://poser.pugx.org/myerscode/laravel-domain-validator/downloads)](https://packagist.org/packages/myerscode/laravel-domain-validator)
 [![PHP Version Require](http://poser.pugx.org/myerscode/laravel-domain-validator/require/php)](https://packagist.org/packages/myerscode/laravel-domain-validator)
 [![License](https://poser.pugx.org/myerscode/laravel-domain-validator/license)](https://packagist.org/packages/myerscode/laravel-domain-validator)
-![Tests](https://github.com/myerscode/laravel-domain-validator/actions/workflows/tests.yml/badge.svg?branch=main)
-[![codecov](https://codecov.io/gh/myerscode/laravel-domain-validator/graph/badge.svg?token=YR0YHVERNV)](https://codecov.io/gh/myerscode/laravel-domain-validator)
+[![Tests](https://github.com/myerscode/laravel-domain-validator/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/myerscode/laravel-domain-validator/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/myerscode/laravel-domain-validator/graph/badge.svg)](https://codecov.io/gh/myerscode/laravel-domain-validator)
 
 ## Requirements
 
