@@ -21,7 +21,12 @@
     }
   ],
   "require": {
+    "ext-curl": "*",
+    "ext-dom": "*",
+    "ext-fileinfo": "*",
     "ext-intl": "*",
+    "ext-mbstring": "*",
+    "ext-xml": "*",
     "php": "^8.5",
     "guzzlehttp/guzzle": "^7.2",
     "illuminate/config": "^13.0",

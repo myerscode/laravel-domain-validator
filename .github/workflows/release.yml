@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version (e.g. 1.0.0)'
+        description: 'Semver version (e.g. 1.0.0)'
         required: true
         type: string
   push:
@@ -12,19 +12,20 @@ on:
       - '[0-9]+.[0-9]+.[0-9]+'
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
           ref: main
           fetch-depth: 0
+          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+          persist-credentials: true
 
       - name: Determine version
         id: version
@@ -35,10 +36,10 @@ jobs:
             echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Validate version format
+      - name: Validate semver format
         run: |
           if ! echo "${{ steps.version.outputs.tag }}" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
-            echo "Error: Version must be in MAJOR.MINOR.PATCH format (e.g. 1.0.0)"
+            echo "Error: Version must be in semver format (e.g. 1.0.0)"
             exit 1
           fi
 
@@ -63,7 +64,7 @@ jobs:
           toTag: ${{ steps.previous.outputs.tag }}
           excludeTypes: build,docs,other,style,ci,chore
           useGitmojis: false
-          writeToFile: true
+          writeToFile: false
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
@@ -71,6 +72,16 @@ jobs:
           tag_name: ${{ steps.version.outputs.tag }}
           name: ${{ steps.version.outputs.tag }}
           body: ${{ steps.changelog.outputs.changes }}
+
+      - name: Write changelog to file
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ github.token }}
+          fromTag: ${{ steps.version.outputs.tag }}
+          toTag: ${{ steps.previous.outputs.tag }}
+          excludeTypes: build,docs,other,style,ci,chore
+          useGitmojis: false
+          writeToFile: true
 
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v7
