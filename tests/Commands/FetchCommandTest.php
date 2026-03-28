@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 final class FetchCommandTest extends TestCase
 {
-    public function testCommand(): void
+    public function test_command(): void
     {
         Storage::fake(config('domain-validator.storage_driver'));
 
@@ -25,7 +25,7 @@ final class FetchCommandTest extends TestCase
             ->assertExists(config('domain-validator.iana_tld.storage_name'));
     }
 
-    public function testCommandOutputsErrorWhenFetchFails(): void
+    public function test_command_outputs_error_when_fetch_fails(): void
     {
         config()->set('domain-validator.public_suffix.list_url', __DIR__ . '/nonexistent-file.dat');
         config()->set('domain-validator.iana_tld.list_url', __DIR__ . '/nonexistent-file.txt');

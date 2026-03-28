@@ -18,7 +18,7 @@ use function Myerscode\Laravel\DomainValidator\isTLD;
 
 final class HelpersTest extends TestCase
 {
-    public function testRuleReturnsFalseIfException(): void
+    public function test_rule_returns_false_if_exception(): void
     {
         $this->makeFacadesFails();
 

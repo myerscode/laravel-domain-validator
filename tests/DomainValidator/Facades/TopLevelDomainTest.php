@@ -10,7 +10,7 @@ use Pdp\TopLevelDomains as PdpTopLevelDomain;
 
 final class TopLevelDomainTest extends TestCase
 {
-    public function testReturnsAnInstanceOfRules(): void
+    public function test_returns_an_instance_of_rules(): void
     {
         $this->assertInstanceOf(PdpTopLevelDomain::class, TopLevelDomain::fromString('# Version 2024041000, Last Updated Wed Apr 10 07:07:02 2024 UTC'));
     }

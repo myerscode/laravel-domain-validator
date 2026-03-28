@@ -10,7 +10,7 @@ use Pdp\Suffix as PdpSuffix;
 
 final class SuffixTest extends TestCase
 {
-    public function testReturnsAnInstanceOfRules(): void
+    public function test_returns_an_instance_of_rules(): void
     {
         $this->assertInstanceOf(PdpSuffix::class, Suffix::fromUnknown('com'));
     }

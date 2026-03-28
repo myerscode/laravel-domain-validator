@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 final class RefreshCommandTest extends TestCase
 {
-    public function testCommand(): void
+    public function test_command(): void
     {
         Storage::fake(config('domain-validator.storage_driver'));
 

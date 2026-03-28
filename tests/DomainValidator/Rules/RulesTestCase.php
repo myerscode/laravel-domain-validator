@@ -17,7 +17,7 @@ abstract class RulesTestCase extends TestCase
      * @param  ?string  $message  null
      */
     #[DataProvider('ruleTestProvider')]
-    public function testValidator(
+    public function test_validator(
         string $attribute,
         string|array $inputs,
         array $constraints,

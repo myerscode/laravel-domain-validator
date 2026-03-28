@@ -10,7 +10,7 @@ use Pdp\Rules as PdpRules;
 
 final class RulesTest extends TestCase
 {
-    public function testReturnsAnInstanceOfRules(): void
+    public function test_returns_an_instance_of_rules(): void
     {
         $this->assertInstanceOf(PdpRules::class, Rules::fromString(''));
     }

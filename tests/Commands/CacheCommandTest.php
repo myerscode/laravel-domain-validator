@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 final class CacheCommandTest extends TestCase
 {
-    public function testCommand(): void
+    public function test_command(): void
     {
         $this
             ->artisan('domain-validator:cache', [])
