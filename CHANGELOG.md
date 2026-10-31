@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [13.0.1] - 2026-10-31
+### New Features
+- [`dc69fb2`](https://github.com/myerscode/laravel-domain-validator/commit/dc69fb24ac312f6d2b68721869c57375c9de5e25) - **ci**: add shared dependabot auto-merge *(PR [#7](https://github.com/myerscode/laravel-domain-validator/pull/7) by [@oniice](https://github.com/oniice))*
+
+
 ## [13.0.0] - 2026-03-28
 ### New Features
 - [`4d67e8f`](https://github.com/myerscode/laravel-domain-validator/commit/4d67e8f8276bfd6e610191c05c77f96b1b97d9ad) - target PHP 8.5 and Laravel 13 *(commit by [@oniice](https://github.com/oniice))*
@@ -32,3 +37,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [`11fbcc6`](https://github.com/myerscode/laravel-domain-validator/commit/11fbcc65aadec3e0dfe543df0255d7eaeafc8abf) chore(github): renamed workflow file to match its running name
 - [`a791f12`](https://github.com/myerscode/laravel-domain-validator/commit/a791f125ad9f2e9efb6b204b4b1f050c5d8dc204) fix(core): sanatize domain string when checking rule
 [13.0.0]: https://github.com/myerscode/laravel-domain-validator/compare/11.1.1...13.0.0
+[13.0.1]: https://github.com/myerscode/laravel-domain-validator/compare/13.0.0...13.0.1
